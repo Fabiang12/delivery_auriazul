@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="inherit_view_stock_picking" model="ir.ui.view">
+        <field name="name">stock.picking.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[(@name='partner_id')]" position="after">
+                <field name="km"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="chofer"/>
+                <field name="motivo_traslado"/>
+                <field name="numero_remision"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

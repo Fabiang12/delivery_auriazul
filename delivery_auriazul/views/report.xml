@@ -1,0 +1,83 @@
+<odoo>
+    <report id="report_delivery"
+     string="Reporte Delivery"
+     model="stock.picking"
+     report_type="qweb-pdf"
+     name="delivery_auriazul.report_delivery_template"
+     />
+
+    <template id="report_delivery_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1> <span t-field="o.name"> </span> </h1>
+                        <h2> Referencia: <span t-field="o.origin"> </span> </h2>
+                        <br> </br>
+                        <h5>
+                            Cliente: <span t-field="o.partner_id"> </span>
+                        </h5>
+                        <h5>
+                            Teléfono: <span t-field="o.partner_id.phone"> </span>
+                        </h5>
+                        <h5>
+                            Puesto de trabajo: <span t-field="o.partner_id.function"> </span>
+                        </h5>
+                        <h5>
+                            Correo electrónico: <span t-field="o.partner_id.email"> </span>
+                        </h5>
+
+                        <br> </br>
+
+                        <h5>
+                            Datos de transporte
+                        </h5>
+                        <h5>
+                            Km estimado: <span t-field="o.km"> </span>
+                        </h5>
+                        <h5>
+                            Fecha inicio traslado: <span t-field="o.fecha_inicio"> </span>
+                        </h5>
+                        <h5>
+                            Fecha fin traslado: <span t-field="o.fecha_fin"> </span>
+                        </h5>
+                        <h5>
+                            Chofer: <span t-field="o.chofer"> </span>
+                        </h5>
+                        <h5>
+                            Motivo de traslado: <span t-field="o.motivo_traslado"> </span>
+                        </h5>
+                        <h5>
+                            Número de remisión: <span t-field="o.numero_remision"> </span>
+                        </h5>
+
+                        <br> </br>
+
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Producto</th>
+                              <th scope="col">Demanda</th>
+                              <th scope="col">Reservado</th>
+                              <th scope="col">Hecho</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="tabla">
+                                    <td> <span t-field="tabla.product_id"/> </td>
+                                    <td> <span t-field="tabla.product_uom_qty"/> </td>
+                                    <td> <span t-field="tabla.forecast_availability"/> </td>
+                                    <td> <span t-field="tabla.quantity_done"/> </td>
+                                </t>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+               </t>
+           </t>
+       </t>
+    </template>
+</odoo>
+
+
